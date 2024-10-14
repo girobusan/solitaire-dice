@@ -1,4 +1,29 @@
 .Track {
   display: flex;
   flex-direction: row;
+  margin-bottom: 4px;
+
+  .number {
+    box-sizing: border-box;
+    padding-right: 4px;
+    width: 32px;
+    height: 24px;
+    text-align: right;
+  }
+}
+
+.Tile {
+  display: block;
+  width: 24px;
+  height: 24px;
+  border: 1px solid gray;
+  margin-right: 2px;
+
+  &[data-occupued*="true"].after {
+    content: "*";
+  }
+
+  &.danger {
+    background-color: orange;
+  }
 }

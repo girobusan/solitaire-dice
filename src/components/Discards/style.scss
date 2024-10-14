@@ -1,0 +1,27 @@
+.Discards {
+  display: inline-flex;
+  flex-direction: row;
+  border: 1px solid silver;
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+.Column {
+  display: flex;
+  flex-direction: column;
+
+  .colhead {
+    width: 24px;
+    height: 24px;
+    background-color: silver;
+  }
+
+  .VTile {
+    display: block;
+    width: 24px;
+    height: 24px;
+    border: 1px solid silver;
+  }
+}
