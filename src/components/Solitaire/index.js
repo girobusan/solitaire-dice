@@ -89,6 +89,6 @@ export default function Solitaire({ }) {
         />
       </div>
     </div>
-    <div class="cubes"><${Cubes} /></div>
+    <div class="cubes"><${Cubes} enabled=${true} /></div>
   </div>`;
 }
