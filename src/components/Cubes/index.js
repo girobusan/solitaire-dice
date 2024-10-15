@@ -15,7 +15,7 @@ function canSubmit(s) {
 
 function roll6() {
   let r = [];
-  for (let i = 0; i < 6; i++) {
+  for (let i = 0; i < 5; i++) {
     r.push(Math.ceil(Math.random() * 6));
   }
   return r.slice(0);
@@ -25,7 +25,10 @@ function countPairs(pn, pa) {
   return pa.filter((e) => e == pn).length();
 }
 function countCubesInPair(pair, cubePairs) {
-  return cubePairs.filter((e) => e == pair).length;
+  console.log("count", pair, "in", cubePairs);
+  const r = cubePairs.filter((e) => e == pair).length;
+  console.log(r);
+  return r;
 }
 
 function setOnePair(pair, index, pairs) {
@@ -33,6 +36,7 @@ function setOnePair(pair, index, pairs) {
   return pairs.slice(0);
 }
 function notPair(pair) {
+  console.log("not pair", pair, "means", pair === 1 ? 2 : 1);
   return pair === 1 ? 2 : 1;
 }
 
@@ -62,16 +66,24 @@ export default function Cubes({ discards, enabled, submitFn }) {
         setPairs(setOnePair(0, i, pairs));
         return;
       }
+      const pairslen = [countCubesInPair(1, pairs), countCubesInPair(2, pairs)];
+      if (pairslen[0] == 2 && pairslen[1] == 2) {
+        return;
+      }
       //if cube has no pair...
       const cubesInPair = countCubesInPair(currentPair, pairs);
       //...and current pair has 2 cubes
       // = change current pair, give new current pair to cube; return
-      if (cubesInPair >= 2) {
+      if (cubesInPair + 1 >= 2) {
+        console.log("Current pair eshausted", cubesInPair);
         setCurrentPair(notPair(currentPair));
+      } else {
+        console.log("keep current pair", cubesInPair);
       }
+
       // ...and current pair has less than 2 cubes
       //  = add current pair to cube ; return
-      setPairs(setOnePair(currentPair, i, pair));
+      setPairs(setOnePair(currentPair, i, pairs));
     },
     [pairs, cubeState],
   );
@@ -99,7 +111,7 @@ export default function Cubes({ discards, enabled, submitFn }) {
             index=${i}
             pair=${pairs[i]}
             hidden=${cubeState == START}
-            onClick=${(i, e) => console.log(i, e, cubeState)}
+            onClick=${clickCube}
           />`,
   )}
     </div>

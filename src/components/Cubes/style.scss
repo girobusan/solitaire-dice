@@ -9,6 +9,14 @@
   &[data-hidden*="true"] {
     background-color: gray;
   }
+
+  &[data-pair*="1"] {
+    background-color: maroon;
+  }
+
+  &[data-pair*="2"] {
+    background-color: royalblue;
+  }
 }
 
 .Cubes {
