@@ -155,7 +155,7 @@ export default function Cubes({ discards, enabled, submitFn }) {
       }
       if (canSubmit(cubeState)) {
         console.log("submit", calcMove());
-        typeof submitFn === "function" && submitFn();
+        typeof submitFn === "function" && submitFn(calcMove());
         setCubeState(WAITING);
       }
     }}
